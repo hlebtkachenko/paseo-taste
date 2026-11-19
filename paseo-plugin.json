@@ -1,0 +1,9 @@
+{
+  "id": "taste",
+  "name": "Taste",
+  "description": "Give Paseo some Taste.",
+  "media": [],
+  "requirements": {
+    "paseo": ">=0.17.0-beta.1"
+  }
+}

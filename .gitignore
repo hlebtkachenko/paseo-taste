@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Build and typecheck output
+dist/
+*.tsbuildinfo
+coverage/
+
+# Packed npm tarballs
+*.tgz
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Local Paseo test homes
+.paseo-test-home/
+
+# OS and editor files
+.DS_Store
+.vscode/
+.idea/
+*.swp
