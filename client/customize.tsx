@@ -1,13 +1,21 @@
 import type { PluginScreenProps } from "@getpaseo/plugin/client";
 import { ExternalLink, Icon, SettingsCard, SettingsSwitch } from "@getpaseo/plugin/client/ui";
 import { useMemo, useState } from "react";
-import { readThinIcons, setThinIcons, thinIconsSupported } from "./web";
+import {
+  conductorSpacingSupported,
+  readConductorSpacing,
+  readThinIcons,
+  setConductorSpacing,
+  setThinIcons,
+  thinIconsSupported,
+} from "./web";
 import { Text, View } from "react-native";
 
 const REPO_URL = "https://github.com/hlebtkachenko/paseo-taste";
 
 export function CustomizeScreen({ theme }: PluginScreenProps) {
   const [thinIcons, setThinIconsState] = useState(readThinIcons);
+  const [conductorSpacing, setConductorSpacingState] = useState(readConductorSpacing);
   const styles = useMemo(
     () => ({
       screen: {
@@ -36,17 +44,29 @@ export function CustomizeScreen({ theme }: PluginScreenProps) {
       <ExternalLink href={REPO_URL} accessibilityLabel="See docs on GitHub">
         <Text style={styles.linkText}>See docs</Text>
       </ExternalLink>
-      {thinIconsSupported ? (
+      {thinIconsSupported || conductorSpacingSupported ? (
         <View style={styles.settings}>
           <SettingsCard>
-            <SettingsSwitch
-              label="Thin icons"
-              value={thinIcons}
-              onValueChange={(next) => {
-                setThinIconsState(next);
-                setThinIcons(next);
-              }}
-            />
+            {thinIconsSupported ? (
+              <SettingsSwitch
+                label="Thin icons"
+                value={thinIcons}
+                onValueChange={(next) => {
+                  setThinIconsState(next);
+                  setThinIcons(next);
+                }}
+              />
+            ) : null}
+            {conductorSpacingSupported ? (
+              <SettingsSwitch
+                label="Conductor spacing"
+                value={conductorSpacing}
+                onValueChange={(next) => {
+                  setConductorSpacingState(next);
+                  setConductorSpacing(next);
+                }}
+              />
+            ) : null}
           </SettingsCard>
         </View>
       ) : null}

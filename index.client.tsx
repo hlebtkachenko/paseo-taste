@@ -2,7 +2,12 @@ import type { PluginClientContext, PluginSidebarItemProps } from "@getpaseo/plug
 import { SidebarRow } from "@getpaseo/plugin/client/ui";
 import { CustomizeScreen } from "./client/customize";
 import { NewWorkspaceScreen } from "./client/new-workspace";
-import { applyThinIcons, readThinIcons } from "./client/web";
+import {
+  applyConductorSpacing,
+  applyThinIcons,
+  readConductorSpacing,
+  readThinIcons,
+} from "./client/web";
 
 function CustomizeItem({ currentScreen, openScreen }: PluginSidebarItemProps) {
   return (
@@ -34,5 +39,9 @@ export default function contribute(client: PluginClientContext) {
     Component: NewWorkspaceItem,
   });
   applyThinIcons(readThinIcons());
-  return () => applyThinIcons(false);
+  applyConductorSpacing(readConductorSpacing());
+  return () => {
+    applyThinIcons(false);
+    applyConductorSpacing(false);
+  };
 }
