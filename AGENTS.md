@@ -30,6 +30,7 @@ server/             daemon-only code (Node)
 shared/             RPC contracts and types used by both sides
 OVERVIEW.md         registry listing page; rules are in its header comment
 README.md           GitHub page: tagline, requirements, install, develop, license
+.fallowrc.json      fallow config: the two entries, so client files are not reported unused
 ```
 
 Each entry default-exports a function that registers contributions and returns a cleanup function. The daemon compiles the source on install and on reload. Paseo supplies the runtime libraries (plugin SDK, React, React Native, TanStack Query, Zod), so `package.json` holds dev dependencies only.
