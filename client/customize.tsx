@@ -1,7 +1,9 @@
 import type { PluginScreenProps } from "@getpaseo/plugin/client";
-import { Icon } from "@getpaseo/plugin/client/ui";
+import { ExternalLink, Icon } from "@getpaseo/plugin/client/ui";
 import { useMemo } from "react";
 import { Text, View } from "react-native";
+
+const REPO_URL = "https://github.com/hlebtkachenko/paseo-taste";
 
 export function CustomizeScreen({ theme }: PluginScreenProps) {
   const styles = useMemo(
@@ -10,10 +12,17 @@ export function CustomizeScreen({ theme }: PluginScreenProps) {
         flex: 1,
         alignItems: "center" as const,
         justifyContent: "center" as const,
-        gap: 12,
         backgroundColor: theme.colors.surface0,
       },
-      title: { color: theme.colors.foreground, fontSize: 15, fontWeight: "500" as const },
+      title: {
+        marginTop: 12,
+        color: theme.colors.foreground,
+        fontSize: 15,
+        fontWeight: "500" as const,
+      },
+      description: { marginTop: 6, color: theme.colors.foregroundMuted, fontSize: 14 },
+      link: { marginTop: 6, flexDirection: "row" as const, alignItems: "center" as const, gap: 4 },
+      linkText: { color: theme.colors.foregroundMuted, fontSize: 13 },
     }),
     [theme],
   );
@@ -21,6 +30,13 @@ export function CustomizeScreen({ theme }: PluginScreenProps) {
     <View style={styles.screen}>
       <Icon name="Briefcase" size={24} color={theme.colors.foregroundMuted} />
       <Text style={styles.title}>Customize</Text>
+      <Text style={styles.description}>Give Paseo some Taste.</Text>
+      <ExternalLink href={REPO_URL} accessibilityLabel="See docs on GitHub">
+        <View style={styles.link}>
+          <Text style={styles.linkText}>See docs</Text>
+          <Icon name="ArrowUpRight" size={12} color={theme.colors.foregroundMuted} />
+        </View>
+      </ExternalLink>
     </View>
   );
 }
