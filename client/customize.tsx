@@ -21,8 +21,7 @@ export function CustomizeScreen({ theme }: PluginScreenProps) {
         fontWeight: "500" as const,
       },
       description: { marginTop: 6, color: theme.colors.foregroundMuted, fontSize: 14 },
-      link: { marginTop: 6, flexDirection: "row" as const, alignItems: "center" as const, gap: 4 },
-      linkText: { color: theme.colors.foregroundMuted, fontSize: 13 },
+      linkText: { marginTop: 6, color: theme.colors.foregroundMuted, fontSize: 13 },
     }),
     [theme],
   );
@@ -32,10 +31,7 @@ export function CustomizeScreen({ theme }: PluginScreenProps) {
       <Text style={styles.title}>Customize</Text>
       <Text style={styles.description}>Give Paseo some Taste.</Text>
       <ExternalLink href={REPO_URL} accessibilityLabel="See docs on GitHub">
-        <View style={styles.link}>
-          <Text style={styles.linkText}>See docs</Text>
-          <Icon name="ArrowUpRight" size={12} color={theme.colors.foregroundMuted} />
-        </View>
+        <Text style={styles.linkText}>See docs</Text>
       </ExternalLink>
     </View>
   );
