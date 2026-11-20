@@ -1,6 +1,7 @@
 import type { PluginClientContext, PluginSidebarItemProps } from "@getpaseo/plugin/client";
 import { SidebarRow } from "@getpaseo/plugin/client/ui";
 import { CustomizeScreen } from "./client/customize";
+import { applyThinIcons, readThinIcons } from "./client/web";
 
 function CustomizeItem({ currentScreen, openScreen }: PluginSidebarItemProps) {
   return (
@@ -15,5 +16,6 @@ function CustomizeItem({ currentScreen, openScreen }: PluginSidebarItemProps) {
 export default function contribute(client: PluginClientContext) {
   client.addScreen({ id: "customize", title: "Customize", Component: CustomizeScreen });
   client.addSidebarHeaderItem({ id: "customize", title: "Customize", Component: CustomizeItem });
-  return () => {};
+  applyThinIcons(readThinIcons());
+  return () => applyThinIcons(false);
 }

@@ -17,7 +17,7 @@ Instructions for agents working in this repo. Keep this file current when the la
 
 ## Status
 
-One screen: "Customize" (sidebar item with a briefcase icon; page shows the icon, title, tagline and a "See docs" link to the repo). The `paseo plugin init` greeting RPC is still in `server/` and `shared/`, unused by the client. Scope is not decided: do not add features or write descriptions of what Taste does without Hleb.
+One screen: "Customize" (sidebar item with a briefcase icon; page shows the icon, title, tagline, a "See docs" link to the repo, and a "Thin icons" switch). Thin icons: `client/web.ts` injects Conductor's rule (`.lucide` stroke 1px, non-scaling) on desktop/web; on by default, stored per device in localStorage; removed on plugin cleanup. The `paseo plugin init` greeting RPC is still in `server/` and `shared/`, unused by the client. Scope is not decided: do not add features or write descriptions of what Taste does without Hleb.
 
 ## Layout
 
