@@ -1,19 +1,19 @@
 import type { PluginClientContext, PluginSidebarItemProps } from "@getpaseo/plugin/client";
 import { SidebarRow } from "@getpaseo/plugin/client/ui";
-import { GreetingScreen } from "./client/greeting";
+import { CustomizeScreen } from "./client/customize";
 
-function GreetingItem({ currentScreen, openScreen }: PluginSidebarItemProps) {
+function CustomizeItem({ currentScreen, openScreen }: PluginSidebarItemProps) {
   return (
     <SidebarRow
-      icon="MessageCircle"
-      active={currentScreen?.screenId === "greeting"}
-      onPress={() => openScreen({ screenId: "greeting" })}
+      icon="Briefcase"
+      active={currentScreen?.screenId === "customize"}
+      onPress={() => openScreen({ screenId: "customize" })}
     />
   );
 }
 
 export default function contribute(client: PluginClientContext) {
-  client.addScreen({ id: "greeting", title: "Greeting", Component: GreetingScreen });
-  client.addSidebarHeaderItem({ id: "greeting", title: "Greeting", Component: GreetingItem });
+  client.addScreen({ id: "customize", title: "Customize", Component: CustomizeScreen });
+  client.addSidebarHeaderItem({ id: "customize", title: "Customize", Component: CustomizeItem });
   return () => {};
 }

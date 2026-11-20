@@ -17,7 +17,7 @@ Instructions for agents working in this repo. Keep this file current when the la
 
 ## Status
 
-Scaffold only (the `paseo plugin init` greeting sample). Scope is not decided: do not add features or write descriptions of what Taste does without Hleb.
+One screen: "Customize" (sidebar item with a briefcase icon, empty page). The `paseo plugin init` greeting RPC is still in `server/` and `shared/`, unused by the client. Scope is not decided: do not add features or write descriptions of what Taste does without Hleb.
 
 ## Layout
 
