@@ -137,3 +137,48 @@ export function setConductorSpacing(enabled: boolean): void {
 }
 
 export const conductorSpacingSupported = isWeb;
+
+const ANTHROPIC_FONT_STYLE_ID = "taste-anthropic-font";
+const ANTHROPIC_FONT_KEY = "taste:anthropic-font";
+
+// Paseo's web build points all UI text at `--paseo-ui-font`, set inline on <html> from
+// Settings → Appearance (packages/app/src/appearance/apply-root-font.web.ts). An `!important`
+// declaration beats that inline value; code surfaces keep their mono font. The font must be
+// installed on the machine.
+const ANTHROPIC_FONT_CSS =
+  ':root{--paseo-ui-font:"Anthropic Sans", system-ui, -apple-system, sans-serif !important}';
+
+export function readAnthropicFont(): boolean {
+  if (!isWeb) return false;
+  try {
+    return localStorage.getItem(ANTHROPIC_FONT_KEY) === "on";
+  } catch {
+    return false;
+  }
+}
+
+export function applyAnthropicFont(enabled: boolean): void {
+  if (!isWeb) return;
+  const existing = document.getElementById(ANTHROPIC_FONT_STYLE_ID);
+  if (!enabled) {
+    existing?.remove();
+    return;
+  }
+  if (existing) return;
+  const style = document.createElement("style");
+  style.id = ANTHROPIC_FONT_STYLE_ID;
+  style.textContent = ANTHROPIC_FONT_CSS;
+  document.head.appendChild(style);
+}
+
+export function setAnthropicFont(enabled: boolean): void {
+  if (!isWeb) return;
+  try {
+    localStorage.setItem(ANTHROPIC_FONT_KEY, enabled ? "on" : "off");
+  } catch {
+    // Storage unavailable: the change still applies for this session.
+  }
+  applyAnthropicFont(enabled);
+}
+
+export const anthropicFontSupported = isWeb;

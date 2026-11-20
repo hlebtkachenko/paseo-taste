@@ -3,8 +3,10 @@ import { SidebarRow } from "@getpaseo/plugin/client/ui";
 import { CustomizeScreen } from "./client/customize";
 import { NewWorkspaceScreen } from "./client/new-workspace";
 import {
+  applyAnthropicFont,
   applyConductorSpacing,
   applyThinIcons,
+  readAnthropicFont,
   readConductorSpacing,
   readThinIcons,
 } from "./client/web";
@@ -19,28 +21,15 @@ function CustomizeItem({ currentScreen, openScreen }: PluginSidebarItemProps) {
   );
 }
 
-function NewWorkspaceItem({ currentScreen, openScreen }: PluginSidebarItemProps) {
-  return (
-    <SidebarRow
-      icon="Plus"
-      active={currentScreen?.screenId === "new-workspace"}
-      onPress={() => openScreen({ screenId: "new-workspace" })}
-    />
-  );
-}
-
 export default function contribute(client: PluginClientContext) {
   client.addScreen({ id: "customize", title: "Customize", Component: CustomizeScreen });
   client.addSidebarHeaderItem({ id: "customize", title: "Customize", Component: CustomizeItem });
   client.addScreen({ id: "new-workspace", title: "New workspace", Component: NewWorkspaceScreen });
-  client.addSidebarHeaderItem({
-    id: "new-workspace",
-    title: "New workspace",
-    Component: NewWorkspaceItem,
-  });
   applyThinIcons(readThinIcons());
   applyConductorSpacing(readConductorSpacing());
+  applyAnthropicFont(readAnthropicFont());
   return () => {
+    applyAnthropicFont(false);
     applyThinIcons(false);
     applyConductorSpacing(false);
   };
